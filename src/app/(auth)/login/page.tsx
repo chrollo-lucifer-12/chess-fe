@@ -10,12 +10,12 @@ const LoginPage = () => {
     const [state, formAction, isPending] =  useActionState(loginAction, null);
 
     return <div className={"h-full w-full flex justify-center items-center"}>
-        <Card className={"bg-black border-none rounded-xl w-[25%]"}>
+        <Card className={"bg-black w-[50%] border-none rounded-xl"}>
             <CardHeader className={"flex flex-col justify-center items-center"}>
                 <CardTitle className={"text-white"}>Login to your account</CardTitle>
                 <CardDescription className={"text-inputtext font-semibold"}>Let's get started</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className={"w-full"}>
                 <AuthForm state={state} formAction={formAction} signup={false} isPending={isPending}/>
             </CardContent>
         </Card>

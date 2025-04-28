@@ -13,7 +13,7 @@ interface AuthFormProps {
 }
 
 const AuthForm = ({formAction,isPending,signup,state} : AuthFormProps) => {
-    return <form action={formAction} className={"flex flex-col gap-y-3"}>
+    return <form action={formAction} className={"flex flex-col gap-y-3 w-full"}>
         <FormGenerator inputType={"input"} name={"email"} label={"Email"} placeholder={"Email"}
                        type={"email"} error={state?.errors.email}/>
         {

@@ -18,7 +18,7 @@ const SignupPage = () => {
   //  console.log(state?.errors)
 
     return <div className={"h-full w-full flex justify-center items-center"}>
-        <Card className={"bg-black border-none rounded-xl w-[25%]"}>
+        <Card className={"bg-black border-none rounded-xl w-[50%]"}>
             <CardHeader className={"flex flex-col justify-center items-center"}>
                 <CardTitle className={"text-white"}>Create your account</CardTitle>
                 <CardDescription className={"text-inputtext font-semibold"}>Let's get started</CardDescription>
