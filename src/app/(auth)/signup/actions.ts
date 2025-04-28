@@ -5,14 +5,6 @@ import {prisma} from "@/lib/db"
 import {hash} from "bcrypt"
 import {redirect} from "next/navigation";
 
-interface ActionResult {
-    errors?: {
-        email? : string[],
-        username?: string[],
-        password?: string[]
-    },
-}
-
 export const signupAction = async (prevState : any, formData : FormData) => {
     try {
         const validatedFields = SignupSchema.safeParse({

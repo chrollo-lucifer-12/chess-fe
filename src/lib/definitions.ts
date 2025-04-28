@@ -44,3 +44,47 @@ export const SignupSchema = z.object({
         }
     })
 })
+
+export const LoginSchema = z.object({
+    email : z.string().email({message : "Enter valid email"}),
+    password : z.string().superRefine((val,ctx) => {
+        if (val.length < 8) {
+            ctx.addIssue({
+                code : z.ZodIssueCode.too_small,
+                minimum : 8,
+                type : "string",
+                inclusive : true,
+                message : "Password must be at least 8 characters long"
+            })
+            return
+        }
+        if (!/[a-z]/.test(val)) {
+            ctx.addIssue({
+                code : z.ZodIssueCode.custom,
+                message : "Password must contain at least one lowercase letter"
+            })
+            return;
+        }
+        if (!/[A-Z]/.test(val)) {
+            ctx.addIssue({
+                code : z.ZodIssueCode.custom,
+                message : "Password must be contain at least one uppercase letter"
+            })
+            return;
+        }
+        if (!/[0-9]/.test(val)) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Password must contain at least one number",
+            });
+            return;
+        }
+        if (!/[^A-Za-z0-9]/.test(val)) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Password must contain at least one special character",
+            });
+            return;
+        }
+    })
+})
