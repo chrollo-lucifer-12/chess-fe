@@ -20,7 +20,9 @@ export const signupAction = async (prevState : any, formData : FormData) => {
             password : formData.get("password"),
             username : formData.get("username")
         })
+
         if (!validatedFields.success) {
+            console.log(validatedFields.error);
             return {
                 errors : {
                     email : validatedFields.error.flatten().fieldErrors.email,

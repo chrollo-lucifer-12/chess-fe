@@ -112,6 +112,13 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
+@theme {
+  --color-inputbg : #2D2D2D;
+  --color-inputtext : #6D6D6D;
+  --color-cardbg : #111111;
+  --color-buttonbg : #131316;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
