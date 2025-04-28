@@ -353,7 +353,7 @@
   resolved "https://registry.yarnpkg.com/@oslojs/binary/-/binary-1.0.0.tgz#3e73f9cef0d06731d2aa528066666ccc00d610d6"
   integrity sha512-9RCU6OwXU6p67H4NODbuxv2S3eenuQ4/WFLrsq+K/k682xrznH5EVWA7N4VFk9VYVcbFtKqur5YQQZc0ySGhsQ==
 
-"@oslojs/crypto@^1.0.1":
+"@oslojs/crypto@1.0.1", "@oslojs/crypto@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@oslojs/crypto/-/crypto-1.0.1.tgz#74cf0d19d9fcda7cf5648cf3188dfeaf1d1b039f"
   integrity sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ==
@@ -361,10 +361,22 @@
     "@oslojs/asn1" "1.0.0"
     "@oslojs/binary" "1.0.0"
 
-"@oslojs/encoding@^1.1.0":
+"@oslojs/encoding@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@oslojs/encoding/-/encoding-0.4.1.tgz#1489e560041533214511e9e03626962d24e58e9f"
+  integrity sha512-hkjo6MuIK/kQR5CrGNdAPZhS01ZCXuWDRJ187zh6qqF2+yMHZpD9fAYpX8q2bOO6Ryhl3XpCT6kUX76N8hhm4Q==
+
+"@oslojs/encoding@1.1.0", "@oslojs/encoding@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@oslojs/encoding/-/encoding-1.1.0.tgz#55f3d9a597430a01f2a5ef63c6b42f769f9ce34e"
   integrity sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==
+
+"@oslojs/jwt@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@oslojs/jwt/-/jwt-0.2.0.tgz#cdcd51e562eed2e536d273c840e90648c2d4a54a"
+  integrity sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg==
+  dependencies:
+    "@oslojs/encoding" "0.4.1"
 
 "@prisma/client@^6.6.0":
   version "6.6.0"
@@ -620,6 +632,15 @@ ansi-regex@^5.0.1:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-2.0.0.tgz#52520b8ae5b569215b354efc0caa3fe1e45a8adc"
   integrity sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==
+
+arctic@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/arctic/-/arctic-3.6.0.tgz#d46e35a5a305ff265d5d4d9537c08c0dc77b12c6"
+  integrity sha512-egHDsCqEacb6oSHz5QSSxNhp07J+QJwJdPvs0katL+mNM5LaGQVqxmcdq1KwfaSNSAlVumBBs0MRExS88TxbMg==
+  dependencies:
+    "@oslojs/crypto" "1.0.1"
+    "@oslojs/encoding" "1.1.0"
+    "@oslojs/jwt" "0.2.0"
 
 are-we-there-yet@^2.0.0:
   version "2.0.0"

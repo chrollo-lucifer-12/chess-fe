@@ -23,6 +23,7 @@ const AuthForm = ({formAction,isPending,signup,state} : AuthFormProps) => {
         <FormGenerator inputType={"input"} name={"password"} label={"Password"} placeholder={"Password"}
                        type={"password"} error={state?.errors.password}/>
         <Button
+            type={"submit"}
             disabled={isPending}
             className={"mt-4 bg-buttonbg border-2 border-[#131316] text-inputtext relative overflow-hidden group"}>
                         <span
@@ -36,8 +37,10 @@ const AuthForm = ({formAction,isPending,signup,state} : AuthFormProps) => {
 
         <p className={"text-inputtext text-xs text-center mt-2"}>{signup ? "or sign up with" : "or log in with"}</p>
 
-        <Button className={"bg-white hover:bg-[#E5E0E2] transition duration-300"}>
-            <Image src={"/google-icon.png"} alt={"google"} width={20} height={20}/>
+        <Button type={"button"} className={"bg-white hover:bg-[#E5E0E2] transition duration-300"} >
+            <Link href={"/login/github"}>
+                <Image src={"/github-mark.png"} alt={"google"} width={20} height={20}/>
+            </Link>
         </Button>
 
         <span className={"flex justify-center gap-x-1 items-center text-white text-xs"}>

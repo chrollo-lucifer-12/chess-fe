@@ -48,7 +48,7 @@ export const signupAction = async (prevState : any, formData : FormData) => {
                 password : hashedPassword
             }
         })
-        redirect("/login");
+        return redirect("/login");
     } catch (e) {
         console.log(e);
     }

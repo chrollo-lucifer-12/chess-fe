@@ -16,8 +16,9 @@ model Session {
 
 model User {
   id       String    @id @default(uuid())
-  email    String    @unique
-  password String
+  email    String?   @unique
+  githubId Int?
+  password String?
   username String    @unique
   sessions Session[]
 }

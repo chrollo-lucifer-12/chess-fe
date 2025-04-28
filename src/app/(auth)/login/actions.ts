@@ -41,7 +41,7 @@ export const loginAction = async (prevState : any, formData : FormData) => {
         const sessionToken = await generateSessionToken();
         const session = await createSession(sessionToken, findUser.id)
         await setSessionTokenCookie(sessionToken, session.expiresAt);
-        redirect("/");
+        return redirect("/");
     } catch (e) {
         console.log(e);
     }
