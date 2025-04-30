@@ -6,10 +6,12 @@ import {Button} from "@/components/ui/button";
 import {User} from "@prisma/client";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
-import {useSocketState} from "@/lib/store";
+import {useSetColor, useSetOpponent, useSocketState} from "@/lib/store";
 
 const PlayClient = ({user} : {user : User}) => {
     const socket = useSocketState()
+    const setColor = useSetColor()
+    const setOpponent = useSetOpponent()
     useSocket(user.username)
     const router = useRouter()
 
@@ -17,9 +19,15 @@ const PlayClient = ({user} : {user : User}) => {
         if (socket) {
             const handleMessage = (e : any) => {
                 const parsedData = JSON.parse(e.data);
+                console.log(parsedData);
                 if (parsedData.type === "gameId") {
                     const gameId = parsedData.gameId;
                     router.push(`/play/${gameId}`);
+                }
+                if (parsedData.type === "init_game") {
+                    const {color, opponent} = parsedData.payload;
+                    setColor(color)
+                    setOpponent(opponent);
                 }
             }
 
