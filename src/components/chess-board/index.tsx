@@ -8,7 +8,7 @@ interface CellType {
         x: number
         y: number
     }
-    symbol: string | null
+    symbol: string
 }
 
 const ChessBoard = ({ initialCells }: { initialCells: CellType[] }) => {

@@ -1,13 +1,15 @@
-"use client"
+import {getCurrentSession} from "@/lib/cookie";
+import PlayClient from "@/app/play/_components/play-client";
+import {redirect} from "next/navigation";
 
-import ChessBoard from "@/components/chess-board";
-import {symbol} from "zod";
+const Page = async () => {
+    const {user} = await getCurrentSession()
 
-const Page = () => {
-    // wip : chessboard
-    return <div className={"bg-black h-screen"}>
-        <ChessBoard initialCells={[{coords : {x : 0, y : 0},  symbol : "wp"}]}/>
-    </div>
+    if (!user) {
+        redirect("/login")
+    }
+
+    return <PlayClient user={user}/>
 }
 
 export default Page
