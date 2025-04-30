@@ -36,6 +36,7 @@ export async function GET(request : Request) {
         const githubUser = await githubUserResponse.json();
         const githubUserId = githubUser.id;
         const githubUsername = githubUser.login;
+        const githubAvatar = githubUser.avatar_url;
         const existingUser = await prisma.user.findFirst({where : {githubId : githubUserId}})
         if (existingUser !== null) {
             const sessionToken = await generateSessionToken();

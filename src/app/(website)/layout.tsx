@@ -1,14 +1,13 @@
 import {ReactNode} from "react";
-import Sidebar from "@/components/sidebar";
+import Navbar from "../../components/navbar";
+import {getCurrentSession} from "@/lib/cookie";
 
-const Layout = ({children} : {children : ReactNode}) => {
-    return <main className={"flex h-screen"}>
-        <div className={"w-[10%] bg-[#262522]"}>
-            <Sidebar/>
-        </div>
-        <div className={"bg-[#302E2B] w-[90%]"}>
-            {children}
-        </div>
+const Layout = async ({children} : {children : ReactNode}) => {
+
+    const {user,session} = await getCurrentSession()
+
+    return <main className={"h-screen bg-black"}>
+        <Navbar user={user} />
     </main>
 }
 

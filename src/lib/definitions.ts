@@ -93,31 +93,27 @@ export const sidebarlinks = [
     {
         name : "Play",
         href : "/play",
-        src : "/p1.png"
     },
     {
         name : "Puzzles",
         href: "/puzzles",
-        src : "/p2.png"
     },
     {
         name : "Learn",
         href: "/learn",
-        src : "/p3.png"
     },
     {
         name : "Watch",
         href: "/watch",
-        src : "/p4.png"
     },
     {
         name : "News",
         href: "/news",
-        src : "/p5.png"
+
     },
     {
         name : "Social",
         href: "/social",
-        src : "/p6.png"
+
     }
 ]
