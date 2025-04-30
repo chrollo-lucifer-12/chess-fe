@@ -1,11 +1,16 @@
 "use client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-const UserAvatar = () => {
-    return <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
+const UserAvatar = ({src} : {src : string}) => {
+    return (
+        <div className={"relative group"}>
+            <div className={"absolute w-8 h-8 -inset-0 rounded-full group-hover:bg-amber-400 group-hover:blur-md transition duration-200"}/>
+            <Avatar className={"cursor-pointer relative group-hover:scale-105 transition duration-200"}>
+                <AvatarImage src={src}/>
+                <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+        </div>
+    )
 }
 
 export default UserAvatar
