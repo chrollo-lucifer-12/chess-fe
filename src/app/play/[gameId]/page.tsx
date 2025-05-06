@@ -2,7 +2,8 @@
 
 import {useColor, useOpponent, useSocketState} from "@/lib/store";
 import {useParams} from "next/navigation";
-import {useEffect, useState} from "react";
+import ChessBoard from "@/components/chess-board";
+import {initialCells} from "@/lib/definitions";
 
 const Page =  () => {
 
@@ -11,12 +12,8 @@ const Page =  () => {
     const opponent = useOpponent()
     const {gameId} = useParams()
 
-
-
-
     return <div>
-        {color}
-        {opponent}
+        <ChessBoard initialCells={initialCells} isStatic={false} gameId = {gameId} />
     </div>
 }
 
