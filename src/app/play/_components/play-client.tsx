@@ -8,6 +8,7 @@ import {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {useSetColor, useSetOpponent, useSocketState} from "@/lib/store";
 import {initialCells} from "@/lib/definitions";
+import GameoverCard from "@/app/play/_components/gameover-card";
 
 const PlayClient = ({user} : {user : User}) => {
     const socket = useSocketState()

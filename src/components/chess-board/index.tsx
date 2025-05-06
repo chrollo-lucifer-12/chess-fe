@@ -3,8 +3,8 @@
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import Image from "next/image";
 import {useSocketState} from "@/lib/store";
-import { toast } from "sonner"
 import {findSrc} from "@/lib/definitions";
+import GameoverCard from "@/app/play/_components/gameover-card";
 
 
 interface CellType {
@@ -19,18 +19,16 @@ interface ChessBoardProps {
     initialCells : CellType[],
     isStatic : boolean
     gameId ?: string
-    color : string
-    setCapturedPieces :  Dispatch<SetStateAction<string[]>>
-    setOpponentCapturedPieces :  Dispatch<SetStateAction<string[]>>
+    color ?: string
+    setCapturedPieces ?:  Dispatch<SetStateAction<string[]>>
+    setOpponentCapturedPieces ?:  Dispatch<SetStateAction<string[]>>
 }
 
 const ChessBoard = ({ initialCells, isStatic, gameId, color, setCapturedPieces, setOpponentCapturedPieces }: ChessBoardProps) => {
     const [cells, setCells] = useState<CellType[]>(initialCells);
     const [selectedPiece, setSelectedPiece] = useState<CellType | null>(null)
+    const [isOpen, setIsOpen] = useState(true)
     const socket = useSocketState();
-
-
-
 
     function findPiece(x: number, y: number) {
         for (let cell of cells) {
@@ -67,10 +65,10 @@ const ChessBoard = ({ initialCells, isStatic, gameId, color, setCapturedPieces, 
                     setCells(parsedData.payload.board);
                 }
                 else if (parsedData.type === "stalemate") {
-
+                    setIsOpen(true);
                 }
                 else if (parsedData.type === "game_over") {
-                    toast("game over biachhhhhhh")
+                    setIsOpen(true);
                 }
             })
         }
@@ -78,6 +76,7 @@ const ChessBoard = ({ initialCells, isStatic, gameId, color, setCapturedPieces, 
 
     return (
         <div className="w-full max-w-2xl h-full max-h-2xl grid grid-cols-8 grid-rows-8 border border-black rounded">
+            <GameoverCard isOpen={isOpen} setIsOpen={setIsOpen}/>
             {Array.from({ length: 8 }).map((_, row) =>
                 Array.from({ length: 8 }).map((_, col) => {
                     const symbol = findPiece(row, col);
