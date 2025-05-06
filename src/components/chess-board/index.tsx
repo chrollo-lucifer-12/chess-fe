@@ -1,8 +1,11 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import Image from "next/image";
 import {useSocketState} from "@/lib/store";
+import { toast } from "sonner"
+import {findSrc} from "@/lib/definitions";
+
 
 interface CellType {
     coords: {
@@ -16,30 +19,18 @@ interface ChessBoardProps {
     initialCells : CellType[],
     isStatic : boolean
     gameId ?: string
+    color : string
+    setCapturedPieces :  Dispatch<SetStateAction<string[]>>
+    setOpponentCapturedPieces :  Dispatch<SetStateAction<string[]>>
 }
 
-const ChessBoard = ({ initialCells, isStatic, gameId }: ChessBoardProps) => {
+const ChessBoard = ({ initialCells, isStatic, gameId, color, setCapturedPieces, setOpponentCapturedPieces }: ChessBoardProps) => {
     const [cells, setCells] = useState<CellType[]>(initialCells);
     const [selectedPiece, setSelectedPiece] = useState<CellType | null>(null)
     const socket = useSocketState();
 
-    function findSrc(symbol: string) {
-        switch (symbol) {
-            case "wp": return "/white_pawn.png";
-            case "wr": return "/white_rook.png";
-            case "wn": return "/white_knight.png";
-            case "wb": return "/white_bishop.png";
-            case "wq": return "/white_queen.png";
-            case "wk": return "/white_king.png";
-            case "bp": return "/black_pawn.png";
-            case "br": return "/black_rook.png";
-            case "bn": return "/black_knight.png";
-            case "bb": return "/black_bishop.png";
-            case "bq": return "/black_queen.png";
-            case "bk": return "/black_king.png";
-            default: return null;
-        }
-    }
+
+
 
     function findPiece(x: number, y: number) {
         for (let cell of cells) {
@@ -64,7 +55,22 @@ const ChessBoard = ({ initialCells, isStatic, gameId }: ChessBoardProps) => {
             socket.addEventListener("message", (e) => {
                 const parsedData = JSON.parse(e.data);
                 if (parsedData.type === "move_made") {
+                    const {capturedPiece} = parsedData.payload;
+                    if (capturedPiece) {
+                        if (capturedPiece[0] === color) {
+                            setOpponentCapturedPieces(prevState => [capturedPiece, ...prevState]);
+                        }
+                        else {
+                            setCapturedPieces(prevState => [capturedPiece, ...prevState]);
+                        }
+                    }
                     setCells(parsedData.payload.board);
+                }
+                else if (parsedData.type === "stalemate") {
+
+                }
+                else if (parsedData.type === "game_over") {
+                    toast("game over biachhhhhhh")
                 }
             })
         }

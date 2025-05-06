@@ -118,6 +118,25 @@ export const sidebarlinks = [
     }
 ]
 
+export function findSrc(symbol: string) {
+    switch (symbol) {
+        case "wp": return "/white_pawn.png";
+        case "wr": return "/white_rook.png";
+        case "wn": return "/white_knight.png";
+        case "wb": return "/white_bishop.png";
+        case "wq": return "/white_queen.png";
+        case "wk": return "/white_king.png";
+        case "bp": return "/black_pawn.png";
+        case "br": return "/black_rook.png";
+        case "bn": return "/black_knight.png";
+        case "bb": return "/black_bishop.png";
+        case "bq": return "/black_queen.png";
+        case "bk": return "/black_king.png";
+        default: return null;
+    }
+}
+
+
 export const  initialCells=[
         { coords: { x: 0, y: 0 }, symbol: "br" },
 { coords: { x: 0, y: 1 }, symbol: "bn" },

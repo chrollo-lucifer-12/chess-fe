@@ -1,20 +1,12 @@
-"use client"
+import PlayGameIdClient from "@/app/play/_components/play-gameId-client";
+import {getCurrentSession} from "@/lib/cookie";
 
-import {useColor, useOpponent, useSocketState} from "@/lib/store";
-import {useParams} from "next/navigation";
-import ChessBoard from "@/components/chess-board";
-import {initialCells} from "@/lib/definitions";
+const Page =  async (props : {params : Promise<{gameId : string}>}) => {
+    const params = await props.params;
+    const {gameId} = params
+    const {user} = await getCurrentSession()
 
-const Page =  () => {
-
-    const socket = useSocketState()
-    const color = useColor()
-    const opponent = useOpponent()
-    const {gameId} = useParams()
-
-    return <div>
-        <ChessBoard initialCells={initialCells} isStatic={false} gameId = {gameId} />
-    </div>
+    return <PlayGameIdClient gameId={gameId} user={user!} />
 }
 
 export default Page
