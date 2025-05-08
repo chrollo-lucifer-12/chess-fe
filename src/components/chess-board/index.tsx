@@ -16,13 +16,12 @@ export interface CellType {
 interface ChessBoardProps {
     isStatic : boolean
     gameId ?: string
-    color ?: string
     setCapturedPieces ?:  Dispatch<SetStateAction<string[]>>
     setOpponentCapturedPieces ?:  Dispatch<SetStateAction<string[]>>
     cells : CellType[]
 }
 
-const ChessBoard = ({  isStatic, gameId, color, cells }: ChessBoardProps) => {
+const ChessBoard = ({  isStatic, gameId, cells }: ChessBoardProps) => {
 
     const [selectedPiece, setSelectedPiece] = useState<CellType | null>(null)
     const socket = useSocketState();
