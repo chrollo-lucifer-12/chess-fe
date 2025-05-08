@@ -23,6 +23,7 @@ const PlayGameIdClient = ({gameId, user} : PlayGameIdClientProps) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
     const [messages, setMessages] = useState<{ username: string, message: string } []>([]);
     const [moves, setMoves] = useState<string[]>([])
+    const [currentTurn, setCurrentTurn] = useState("w")
 
     useEffect(() => {
         if (!socket) return;
@@ -41,6 +42,7 @@ const PlayGameIdClient = ({gameId, user} : PlayGameIdClientProps) => {
                 }
                 setCells(parsedData.payload.board);
                 setMoves(prevState => [ ...prevState, parsedData.payload.move])
+                setCurrentTurn(parsedData.payload.currentTurn);
             } else if (parsedData.type === "stalemate") {
                 setIsDialogOpen(true);
             } else if (parsedData.type === "game_over") {
@@ -61,7 +63,7 @@ const PlayGameIdClient = ({gameId, user} : PlayGameIdClientProps) => {
     }, [])
 
     return <div className={"flex p-2 h-full w-full gap-x-6"}>
-        <GameTimer user={user} capturedPieces={capturedPieces} opponentCapturedPieces={opponentCapturedPieces}/>
+        <GameTimer currentTurn={currentTurn} user={user} capturedPieces={capturedPieces} opponentCapturedPieces={opponentCapturedPieces}/>
         <ChessBoard cells={cells} isStatic={false} gameId={gameId as string}
                     setCapturedPieces={setCapturedPieces} setOpponentCapturedPieces={setOpponentCapturedPieces}/>
         <MovesTable moves={moves} messages={messages} gameId={gameId} isPopOverOpen={isPopoverOpen}

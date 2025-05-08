@@ -23,3 +23,21 @@ model User {
   username  String    @unique
   sessions  Session[]
 }
+
+model Game {
+  id      String @id @default(uuid())
+  player1 String
+  player2 String
+  moves   Move[]
+}
+
+model Move {
+  id     String @id @default(uuid())
+  gameId String
+  game   Game   @relation(fields: [gameId], references: [id])
+  piece  String
+  x1     Int
+  y1     Int
+  x2     Int
+  y2     Int
+}
