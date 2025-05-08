@@ -21,6 +21,7 @@ const PlayGameIdClient = ({gameId, user} : PlayGameIdClientProps) => {
     const [cells, setCells] = useState<CellType[]>(initialCells);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const [messages, setMessages] = useState< {username : string, message : string} []>([])
 
     useEffect(() => {
         if (socket) {
@@ -51,6 +52,9 @@ const PlayGameIdClient = ({gameId, user} : PlayGameIdClientProps) => {
                 else if (parsedData.type === "draw_offered") {
                     setIsPopoverOpen(true);
                 }
+                else if (parsedData.type === "message_delivered") {
+                    setMessages(prevState => [ ...prevState, parsedData.payload])
+                }
             })
         }
     },[socket])
@@ -59,7 +63,7 @@ const PlayGameIdClient = ({gameId, user} : PlayGameIdClientProps) => {
         <GameTimer user={user} capturedPieces={capturedPieces} opponentCapturedPieces={opponentCapturedPieces}/>
         <ChessBoard cells={cells} isStatic={false} gameId={gameId as string} color={color!}
                     setCapturedPieces={setCapturedPieces} setOpponentCapturedPieces={setOpponentCapturedPieces}/>
-        <MovesTable gameId={gameId} isPopOverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
+        <MovesTable messages={messages} gameId={gameId} isPopOverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
     </div>
 }
 
