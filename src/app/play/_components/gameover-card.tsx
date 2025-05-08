@@ -14,8 +14,6 @@ interface GameoverCardProps {
 
 const GameoverCard = ({isOpen, setIsOpen} : GameoverCardProps) => {
 
-
-
     return <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTitle></DialogTitle>
         <DialogContent className={"w-[350px] bg-[#18181a] border-none text-white flex flex-col items-center"}>
