@@ -16,7 +16,7 @@ const Navbar = ({user} : NavbarProps) => {
 
     const router = useRouter()
 
-    return <aside className={"flex justify-between items-center w-full pt-1 pb-1 pr-8 pl-8 border-b-1 border-[#262626]"}>
+    return <aside className={"flex justify-between items-center w-full pt-1 pb-1 pr-8 pl-8 border-b-1 border-[#262626] sticky top-0 z-50"}>
         <Image src={"/logo.svg"} alt={"logo"} width={30} height={30} className={"w-[100px] mt-3"}/>
         <div className={"mt-4 flex  gap-y-2 items-center"}>
             {
