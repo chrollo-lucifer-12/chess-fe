@@ -1,6 +1,11 @@
+"use client"
+
+import Hero from "@/app/(website)/_components/hero";
+
 const HomePage = () => {
-    return <div>
-        home
+    return <div className={"w-full"}>
+        <Hero/>
+
     </div>
 }
 

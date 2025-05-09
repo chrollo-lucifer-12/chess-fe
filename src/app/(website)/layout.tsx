@@ -8,6 +8,7 @@ const Layout = async ({children} : {children : ReactNode}) => {
 
     return <main className={"h-screen bg-black"}>
         <Navbar user={user} />
+        {children}
     </main>
 }
 

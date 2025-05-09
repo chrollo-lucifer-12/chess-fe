@@ -1,4 +1,5 @@
 import z from "zod"
+import {ClockIcon, MedalIcon, PlayIcon} from "lucide-react";
 
 export const SignupSchema = z.object({
     email : z.string().email({message : "Enter valid email"}),
@@ -136,7 +137,6 @@ export function findSrc(symbol: string) {
     }
 }
 
-
 export const  initialCells=[
         { coords: { x: 0, y: 0 }, symbol: "br" },
 { coords: { x: 0, y: 1 }, symbol: "bn" },
@@ -176,4 +176,22 @@ export const  initialCells=[
             symbol: "",
         }))
     ).flat(),
+]
+
+export const herocards = [
+    {
+        icon : PlayIcon,
+        title : "10M+",
+        subtitle : "Daily Games"
+    },
+    {
+        icon : MedalIcon,
+        title : "50K+",
+        subtitle : "Tournaments"
+    },
+    {
+        icon : ClockIcon,
+        title : "24/7",
+        subtitle : "Live Games"
+    }
 ]
