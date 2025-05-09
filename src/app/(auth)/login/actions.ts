@@ -30,7 +30,7 @@ export const loginAction = async (prevState : any, formData : FormData) => {
                 }
             }
         }
-        const result = await compare(password, findUser.password)
+        const result = await compare(password, findUser.password!)
         if (!result) {
             return {
                 errors : {

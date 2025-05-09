@@ -5,6 +5,9 @@ import {getCurrentSession} from "@/lib/cookie";
 const Layout = async ({children} : {children : ReactNode}) => {
     const {user, session} = await getCurrentSession();
 
+
+
+
     return (
         <main className="min-h-screen bg-black overflow-x-hidden">
             <Navbar user={user} />
