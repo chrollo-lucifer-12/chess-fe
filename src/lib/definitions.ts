@@ -1,5 +1,5 @@
 import z from "zod"
-import {ClockIcon, MedalIcon, PlayIcon} from "lucide-react";
+import { User, Award, BookOpen, Brain, Target, Lightbulb, Activity, Zap, ClockIcon, MedalIcon, PlayIcon } from 'lucide-react';
 
 export const SignupSchema = z.object({
     email : z.string().email({message : "Enter valid email"}),
@@ -193,5 +193,48 @@ export const herocards = [
         icon : ClockIcon,
         title : "24/7",
         subtitle : "Live Games"
+    }
+]
+
+export const featureCards = [
+    {
+        icon : Brain,
+        title : "Daily Puzzles",
+        content : "Sharpen your tactical skills with our daily puzzles, ranging from beginner to advanced levels."
+    },
+    {
+        icon : Target,
+        title : "Analyze Games",
+        content:  "Review your games with our powerful analysis engine to identify mistakes and improve your strategy."
+    },
+    {
+        icon : BookOpen,
+        title : "Chess Lessons",
+        content : "Learn from structured courses created by masters and grandmasters at your own pace."
+    },
+    {
+        icon : Award,
+        title : "Tournaments",
+        content : "Compete in daily, weekly, and monthly tournaments with players of similar skill levels."
+    },
+    {
+        icon : User,
+        title : "Player Profiles",
+        content:  "Track your progress with detailed statistics, rating history, and performance insights."
+    },
+    {
+        icon : Lightbulb,
+        title : "Chess Variants",
+        content : "Explore different ways to play chess including Crazyhouse, Chess960, King of the Hill, and more."
+    },
+    {
+        icon : Activity,
+        title : "Live Streaming",
+        content : "Watch top players and tournaments with expert commentary and real-time analysis."
+    },
+    {
+        icon : Zap,
+        title : "Speed Class",
+        content: "Test your reflexes with Bullet, Blitz, and Rapid games against players worldwide."
     }
 ]
