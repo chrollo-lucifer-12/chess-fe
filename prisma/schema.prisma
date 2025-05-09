@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum STATUS {
+  LIVE
+  NOTLIVE
+}
+
 model Session {
   id        String   @id @default(uuid())
   userId    String
@@ -29,6 +34,7 @@ model Game {
   player1 String
   player2 String
   moves   Move[]
+  status  STATUS @default(LIVE)
 }
 
 model Move {

@@ -1,0 +1,5 @@
+-- CreateEnum
+CREATE TYPE "STATUS" AS ENUM ('LIVE', 'NOTLIVE');
+
+-- AlterTable
+ALTER TABLE "Game" ADD COLUMN     "status" "STATUS" NOT NULL DEFAULT 'LIVE';
