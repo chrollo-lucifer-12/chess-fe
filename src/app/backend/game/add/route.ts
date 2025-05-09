@@ -15,11 +15,38 @@ export const POST = async (req : Request) => {
             );
         }
 
+        const user1 = await prisma.user.findUnique({where : {username : player1.username}});
+        const user2 = await prisma.user.findUnique({where : {username : player2.username}});
+
+        if (!user1 || !user2) {
+            return new Response(
+                JSON.stringify({ error: "internal server error" }),
+                {
+                    status: 500,
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
+        }
+
+        const p1 = await prisma.player.create({
+            data : {
+                userId : user1.id,
+                color : player1.color
+            }
+        })
+
+        const p2 = await prisma.player.create({
+            data : {
+                userId:  user2.id,
+                color : player2.color
+            }
+        })
+
         await prisma.game.create({
             data : {
                 id : gameId,
-                player1,
-                player2
+                playerId1 : p1.id,
+                playerId2 : p2.id
             }
         })
 

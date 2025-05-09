@@ -4,13 +4,15 @@ import {useSocketState} from "@/lib/store";
 import {useEffect, useState} from "react";
 import {useSocket} from "@/hooks/useSocket";
 import ChessBoard, {CellType} from "@/components/chess-board";
+import {Game} from "@prisma/client";
 
 interface WatchClientProps {
     gameId : string
     username : string
+    game : Game
 }
 
-const WatchClient = ({gameId, username} : WatchClientProps) => {
+const WatchClient = ({gameId, username, game} : WatchClientProps) => {
 
     const socket = useSocketState();
     useSocket(username)
@@ -20,8 +22,6 @@ const WatchClient = ({gameId, username} : WatchClientProps) => {
 
     useEffect(() => {
         if (!socket) return;
-
-        // Function to handle sending the join message
         const sendJoinMessage = () => {
             if (socket.readyState === WebSocket.OPEN) {
                 socket.send(JSON.stringify({
@@ -30,20 +30,14 @@ const WatchClient = ({gameId, username} : WatchClientProps) => {
                 }));
             }
         };
-
-        // If socket is already open, send the message immediately
         if (socket.readyState === WebSocket.OPEN) {
             sendJoinMessage();
             setConnected(true);
         }
-
-        // Otherwise, listen for the open event
         const openHandler = () => {
             sendJoinMessage();
             setConnected(true);
         };
-
-        // Add event listeners
         socket.addEventListener("open", openHandler);
 
         const messageHandler = (e : any) => {
@@ -55,7 +49,6 @@ const WatchClient = ({gameId, username} : WatchClientProps) => {
 
         socket.addEventListener("message", messageHandler);
 
-        // Cleanup
         return () => {
             socket.removeEventListener("open", openHandler);
             socket.removeEventListener("message", messageHandler);
@@ -67,6 +60,7 @@ const WatchClient = ({gameId, username} : WatchClientProps) => {
     }
 
     return <div>
+        <p>{game.player1}</p> <p>vs</p> <p>{game.player2}</p>
         <ChessBoard isStatic={true} cells={cells}/>
     </div>
 }

@@ -12,6 +12,13 @@ enum STATUS {
   NOTLIVE
 }
 
+enum MoveType {
+  NORMAL
+  CASTLING_KINGSIDE
+  CASTLING_QUEENSIDE
+  PROMOTION
+}
+
 model Session {
   id        String   @id @default(uuid())
   userId    String
@@ -27,23 +34,38 @@ model User {
   avatarUrl String?
   username  String    @unique
   sessions  Session[]
+  players   Player[]
+}
+
+model Player {
+  id        String @id @default(uuid())
+  user      User   @relation(fields: [userId], references: [id])
+  userId    String
+  color     String
+  gamesAsP1 Game[] @relation("player1")
+  gamesAsP2 Game[] @relation("player2")
 }
 
 model Game {
-  id      String @id @default(uuid())
-  player1 String
-  player2 String
-  moves   Move[]
-  status  STATUS @default(LIVE)
+  id        String  @id @default(uuid())
+  moves     Move[]
+  status    STATUS  @default(LIVE)
+  player1   Player? @relation("player1", fields: [playerId1], references: [id])
+  player2   Player? @relation("player2", fields: [playerId2], references: [id])
+  playerId1 String?
+  playerId2 String?
 }
 
 model Move {
-  id     String @id @default(uuid())
-  gameId String
-  game   Game   @relation(fields: [gameId], references: [id])
-  piece  String
-  x1     Int
-  y1     Int
-  x2     Int
-  y2     Int
+  id         String   @id @default(uuid())
+  gameId     String
+  game       Game     @relation(fields: [gameId], references: [id])
+  piece      String
+  x1         Int
+  y1         Int
+  x2         Int
+  y2         Int
+  moveType   MoveType @default(NORMAL)
+  promotion  String?
+  turnNumber Int
 }
