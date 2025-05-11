@@ -19,6 +19,13 @@ enum MoveType {
   PROMOTION
 }
 
+enum GameResult {
+  DRAW
+  CHECKMATE
+  RESIGN
+  STALEMATE
+}
+
 model Session {
   id        String   @id @default(uuid())
   userId    String
@@ -47,11 +54,13 @@ model Player {
 }
 
 model Game {
-  id        String  @id @default(uuid())
+  id        String      @id @default(uuid())
   moves     Move[]
-  status    STATUS  @default(LIVE)
-  player1   Player? @relation("player1", fields: [playerId1], references: [id])
-  player2   Player? @relation("player2", fields: [playerId2], references: [id])
+  status    STATUS      @default(LIVE)
+  result    GameResult?
+  winner    String?
+  player1   Player?     @relation("player1", fields: [playerId1], references: [id])
+  player2   Player?     @relation("player2", fields: [playerId2], references: [id])
   playerId1 String?
   playerId2 String?
 }

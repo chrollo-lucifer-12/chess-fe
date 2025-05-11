@@ -3,6 +3,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export default async function middleware(request: NextRequest): Promise<NextResponse> {
+
+    if (request.nextUrl.pathname.startsWith("/backend")) {
+        return NextResponse.next();
+    }
+
     if (request.method === "GET") {
         const response = NextResponse.next();
         const token = request.cookies.get("session")?.value ?? null;
