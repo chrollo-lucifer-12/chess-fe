@@ -238,3 +238,7 @@ export const featureCards = [
         content: "Test your reflexes with Bullet, Blitz, and Rapid games against players worldwide."
     }
 ]
+
+export type Game = {     id: string    , username1: string | undefined ,    username2: string | undefined }
+
+export type User =  {     username: string  ,   avatarUrl: string | null }

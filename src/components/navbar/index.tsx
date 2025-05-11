@@ -38,7 +38,7 @@ const Navbar = ({user} : NavbarProps) => {
                     <Button onClick={() => {
                         router.push("/signup")
                     }} className={"bg-amber-600 hover:bg-amber-700 font-bold"}>Signup</Button>
-                </div>) : (<UserAvatar src={user.avatarUrl || ""}/>)
+                </div>) : (<UserAvatar user={user}/>)
             }
 
         </div>
